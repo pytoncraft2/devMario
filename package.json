@@ -1,0 +1,26 @@
+{
+  "name": "devmario",
+  "version": "1.0.0",
+  "description": "ACM-Game-Presentation =====================",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pytoncraft2/devMario.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pytoncraft2/devMario/issues"
+  },
+  "homepage": "https://github.com/pytoncraft2/devMario#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^3.1.1"
+  }
+}
