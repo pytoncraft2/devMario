@@ -6,8 +6,26 @@ app.get('/', (req, res) => {
 	res.sendFile(__dirname + '/index.html');
 });
 
-io.on('connexion', (socket) => {
-	console.log('un nouvel arrivant!');
+io.on('connection', (socket) => {
+  console.log('a user connected');
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+});
+
+/*
+io.on('connection', (socket) => {
+  socket.on('chat message', (msg) => {
+    io.emit('chat message', msg);
+  });
+});
+
+chat
+*/
+io.on('connection', (socket) => {
+  socket.on('initializeplayer', () => {
+    console.log('test');
+  });
 });
 
 http.listen(3000, () => {
