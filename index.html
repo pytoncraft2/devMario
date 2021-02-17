@@ -54,7 +54,7 @@
 	 
 
 
-var socket = io('http://localhost:3000', { transports: ['websocket', 'polling', 'flashsocket'] });
+var socket = io('http://dispersion.dynv6.net:3000', { transports: ['websocket', 'polling', 'flashsocket'] });
 
 socket.on('message', function (data) {
        var player = ig.game.getEntitiesByType( EntityPlayer )[0];
