@@ -2,7 +2,7 @@
   "name": "devmario",
   "version": "1.0.0",
   "description": "ACM-Game-Presentation =====================",
-  "main": "index.js",
+  "main": "app.js",
   "directories": {
     "lib": "lib"
   },
@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/pytoncraft2/devMario#readme",
   "dependencies": {
-    "express": "^4.15.2",
+    "express": "^4.17.1",
     "socket.io": "^3.1.1"
   }
 }
