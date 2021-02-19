@@ -57,7 +57,7 @@
 var socket = io('http://dispersion.dynv6.net:3000', { transports: ['websocket', 'polling', 'flashsocket'] });
 
 socket.on('message', function (data) {
-       var player = ig.game.getEntitiesByType( EntityPlayer )[0];
+       var player = ig.game.getEntitiesByType( EntityJoueur )[0];
 	 if(player)
 	 {
 	 player.messagebox = player.messagebox + '\n' + data + ' disconnected';
@@ -105,7 +105,7 @@ socket.on('playermove', function (positionx,positiony,currentanimation,thisgamen
 	  
  socket.on('addplayer', function (playerlist,otherplayername) {
 	 console.log('coucou');
-	  var player = ig.game.getEntitiesByType( EntityPlayer )[0];
+	  var player = ig.game.getEntitiesByType( EntityJoueur )[0];
 	 player.messagebox = player.messagebox + '\n' + otherplayername + ' joined';
 	 for(var i = 0;i<playerlist.length;i++)
 	  {
