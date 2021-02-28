@@ -29,7 +29,7 @@ io.sockets.on('connection', function (socket) {
   
 socket.on('recievedata', function (positionx,positiony,currentanimation,gamename) {
    
-     socket.broadcast.emit('playermove', positionx,positiony,currentanimation,gamename);
+     socket.broadcast.emit('playermove', positionx,positiony,currentanimation);
     
     
   }); 
