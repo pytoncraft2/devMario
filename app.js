@@ -1,7 +1,7 @@
 var app = require('http').createServer(handler)
   , io = require('socket.io')(app)
   , fs = require('fs')
- 
+
 
 app.listen(3000);
 
@@ -24,27 +24,27 @@ function handler (req, res) {
 }
 
 io.sockets.on('connection', function (socket) {
-  
-     
-  
-socket.on('recievedata', function (positionx,positiony,currentanimation,gamename) {
-   
-     socket.broadcast.emit('playermove', positionx,positiony,currentanimation,gamename);
-    
-    
-  }); 
 
-  
-   
-  
-  
+
+
+socket.on('recievedata', function (positionx,positiony,currentanimation,gamename) {
+
+     socket.broadcast.emit('playermove', positionx,positiony,currentanimation,gamename);
+
+
+  });
+
+
+
+
+
   socket.on('initializeplayer', function (newplayername) {
- 
+
     socket.clientname = newplayername;
      playerlist.push(newplayername);
  io.sockets.emit('addplayer',playerlist,newplayername);
-   
-   
+
+
   });
  socket.on('disconnect', function(){
    delete playerlist[socket.clientname];
@@ -57,10 +57,10 @@ socket.on('recievedata', function (positionx,positiony,currentanimation,gamename
  }
 socket.broadcast.emit('message',socket.clientname);
  socket.broadcast.emit('netreplayer',playerlist);
- 
- 
-});
- 
 
- 
+
+});
+
+
+
 });
