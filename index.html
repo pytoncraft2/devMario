@@ -64,7 +64,7 @@
     });
 
     socket.on('playermove', function(positionx, positiony, currentanimation, thisgamename, scale) {
-      var otherplayer = ig.game.getEntitiesByType(EntityGoomba);
+      var otherplayer = ig.game.getEntitiesByType(EntityAutre);
 
       if (otherplayer) {
         for (var i in otherplayer) {
@@ -83,7 +83,7 @@
 
 
     socket.on('netreplayer', function(playerlist) {
-      var netplayers = ig.game.getEntitiesByType(EntityGoomba);
+      var netplayers = ig.game.getEntitiesByType(EntityAutre);
       //////////////loop to see if players exist
       if (netplayers) {
         for (var i in netplayers) {
@@ -93,7 +93,7 @@
 
       for (var i in playerlist) {
         if (playername != playerlist[i]) {
-          ig.game.spawnEntity(EntityGoomba, 160, 260, {
+          ig.game.spawnEntity(EntityAutre, 160, 260, {
             gamename: playerlist[i]
           });
         }
@@ -108,7 +108,7 @@
       player.messagebox = player.messagebox + '\n' + otherplayername + ' connecté';
       for (var i = 0; i < playerlist.length; i++) {
         if (player.gamename != playerlist[i]) {
-          ig.game.spawnEntity(EntityGoomba, 160, 260, {
+          ig.game.spawnEntity(EntityAutre, 160, 260, {
             gamename: playerlist[i]
           });
         }
