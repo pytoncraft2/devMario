@@ -11,16 +11,15 @@
       background-color: #1A1A1A;
       color: #FFFFFF;
       font-family: Arial, Helvetica, sans-serif;
+      padding: 0;
+      margin: 0;
     }
 
     #container {
       /*margin: 0px auto;*/
-      width: 940px;
     }
 
     #canvas {
-      border: 1px solid #2F2F2F;
-      margin: 40px auto 20px;
 
       /* Provides a hint to the user agent about how to handle its image rendering.
                  * http://phrogz.net/tmp/canvas_image_zoom.html
@@ -44,25 +43,14 @@
       /* IE8+           */
     }
 
-    #controls {
-      font-size: 10pt;
-      line-height: 150%;
-    }
-
-    .key {
-      border: 1px solid #FFFFFF;
-      font-family: "Courier New", Courier, monospace;
-      padding: 0 4px;
-    }
   </style>
   <script src="./node_modules/socket.io/client-dist/socket.io.js"></script>
   <script type="text/javascript" src="lib/impact/impact.js"></script>
   <script type="text/javascript" src="lib/game/main.js"></script>
   <script>
-
-    var namerand = Math.floor(Math.random() * 999);
-    var playername = "player" + namerand;
-
+  var scale=1;
+  var namerand = Math.floor(Math.random() * 999);
+  var playername = window.prompt("Bienvenue ! Quelle pseudo souhaitez-vous ?", "Joueur" + namerand);
 
     var socket = io('http://localhost:3000', {
       transports: ['websocket', 'polling', 'flashsocket']
@@ -75,8 +63,7 @@
       }
     });
 
-
-    socket.on('playermove', function(positionx, positiony, currentanimation, thisgamename) {
+    socket.on('playermove', function(positionx, positiony, currentanimation, thisgamename, scale) {
       var otherplayer = ig.game.getEntitiesByType(EntityOtherplayer);
 
       if (otherplayer) {
@@ -84,7 +71,10 @@
           if (thisgamename == otherplayer[i].gamename) {
             otherplayer[i].pos.x = positionx;
             otherplayer[i].pos.y = positiony;
+            otherplayer[i].scale.y = scale;
+            otherplayer[i].scale.x = scale;
 
+            otherplayer[i].setScale();
             otherplayer[i].animation = currentanimation;
           }
         }
@@ -114,16 +104,13 @@
 
 
     socket.on('addplayer', function(playerlist, otherplayername) {
-      console.log('coucou');
       var player = ig.game.getEntitiesByType(EntityPlayer)[0];
-      player.messagebox = player.messagebox + '\n' + otherplayername + ' joined';
+      player.messagebox = player.messagebox + '\n' + otherplayername + ' connecté';
       for (var i = 0; i < playerlist.length; i++) {
         if (player.gamename != playerlist[i]) {
           ig.game.spawnEntity(EntityOtherplayer, 160, 260, {
             gamename: playerlist[i]
           });
-
-
         }
       }
 
@@ -134,19 +121,8 @@
 </head>
 
 <body>
-  <header></header>
   <div id="container">
     <canvas id="canvas"></canvas>
-    <div id="controls">
-      Controls:<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;<span class="key">Left Mouse Button</span> : Move unit, select unit, select menu options<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;<span class="key">Right Mouse Button</span> : Display game menu<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;<span class="key">ESC</span> : Cancel menus, cancel selections, undo actions<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;<span class="key">ENTER</span> : Display current unit's stats screen<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;<span class="key">C</span> : Toggle camera focus (mouse cursor or current unit)
-    </div>
   </div>
-  <footer></footer>
 </body>
-
 </html>
