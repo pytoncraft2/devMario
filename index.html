@@ -93,7 +93,7 @@
 
       for (var i in playerlist) {
         if (playername != playerlist[i]) {
-          ig.game.spawnEntity(EntityAutre, 160, 260, {
+          ig.game.spawnEntity(EntityAutre, 32, 128, {
             gamename: playerlist[i]
           });
         }
@@ -108,7 +108,7 @@
       player.messagebox = player.messagebox + '\n' + otherplayername + ' connecté';
       for (var i = 0; i < playerlist.length; i++) {
         if (player.gamename != playerlist[i]) {
-          ig.game.spawnEntity(EntityAutre, 160, 260, {
+          ig.game.spawnEntity(EntityAutre, 32, 128, {
             gamename: playerlist[i]
           });
         }
